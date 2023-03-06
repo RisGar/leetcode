@@ -23,5 +23,3 @@ defmodule Solution do
     |> Enum.join("")
   end
 end
-
-Solution.convert("PFJEWOFJWEFOIJEWF", 3) |> IO.inspect()

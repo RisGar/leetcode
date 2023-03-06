@@ -16,6 +16,3 @@ defmodule Solution do
     |> Enum.at(0)
   end
 end
-
-Solution.two_sum([3, 2, 4], 6)
-|> IO.inspect()

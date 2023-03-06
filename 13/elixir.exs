@@ -29,6 +29,3 @@ defmodule Solution do
     |> Enum.sum()
   end
 end
-
-Solution.roman_to_int("MCMXCIV")
-|> IO.inspect()
