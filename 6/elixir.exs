@@ -11,20 +11,17 @@ defmodule Solution do
       pos = rem(i, num_rows * 2 - 2)
 
       if pos >= num_rows do
+        # return tuple {pos, char}
         {num_rows * 2 - 2 - pos, chars |> Enum.at(i)}
       else
-        {rem(i, num_rows * 2 - 2), chars |> Enum.at(i)}
+        # return tuple {pos, char}
+        {pos, chars |> Enum.at(i)}
       end
     end
     |> Enum.sort_by(&elem(&1, 0))
     |> Enum.map(&elem(&1, 1))
-    |> List.flatten()
     |> Enum.join("")
   end
 end
 
-Solution.convert(
-  "Apalindromeisaword,phrase,number,orothersequenceofunitsthatcanbereadthesamewayineitherdirection,withgeneralallowancesforadjustmentstopunctuationandworddividers.",
-  55
-)
-|> IO.inspect()
+Solution.convert("PFJEWOFJWEFOIJEWF", 3) |> IO.inspect()
