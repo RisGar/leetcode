@@ -5,9 +5,6 @@ defmodule Solution do
   end
 
   def is_palindrome(x) do
-    x |> Integer.digits() ==
-      x
-      |> Integer.digits()
-      |> Enum.reverse()
+    Integer.digits(x) == Integer.digits(x) |> Enum.reverse()
   end
 end
