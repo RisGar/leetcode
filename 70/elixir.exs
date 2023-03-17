@@ -1,26 +1,14 @@
 defmodule Solution do
   @spec climb_stairs(n :: integer) :: integer
+  def climb_stairs(0), do: 1
+  def climb_stairs(1), do: 1
+
   def climb_stairs(n) do
-    0..n
-    |> Enum.reduce([], fn e, acc ->
-      # n = 0 or 1 won't work in with the case statement, because there are not yet two elements in the enum
-      if n <= 1 do
-        1
-      else
-        case e do
-          x when x <= 1 ->
-            [1 | acc]
-
-          # return only solution when n is reached
-          x when x == n ->
-            Enum.at(acc, 0) + Enum.at(acc, 1)
-
-          _ ->
-            [Enum.at(acc, 0) + Enum.at(acc, 1) | acc]
-        end
-      end
-    end)
+    0..n |> Enum.reduce([], &possibilities(&1, &2, n))
   end
-end
 
-Solution.climb_stairs(3) |> IO.inspect()
+  # "cases" as guards
+  def possibilities(e, acc, _) when e <= 1, do: [1 | acc]
+  def possibilities(e, acc, n) when e == n, do: Enum.at(acc, 0) + Enum.at(acc, 1)
+  def possibilities(e, acc, n), do: [Enum.at(acc, 0) + Enum.at(acc, 1) | acc]
+end
