@@ -1,9 +1,7 @@
 defmodule Solution do
   @spec roman_to_int(s :: String.t()) :: integer
   def roman_to_int(s) do
-    chars = s |> String.split("", trim: true)
-
-    map = %{
+    charmap = %{
       "I" => 1,
       "V" => 5,
       "X" => 10,
@@ -13,19 +11,20 @@ defmodule Solution do
       "M" => 1000
     }
 
-    for i <- 0..(length(chars) - 1) do
-      # right to left, so index from back
-      reverse_i = length(chars) - 1 - i
-
-      current = map[chars |> Enum.at(reverse_i)]
-      last = map[chars |> Enum.at(reverse_i + 1)]
-
-      if current < last && last != nil do
-        0 - current
-      else
-        current
-      end
-    end
-    |> Enum.sum()
+    chars =
+      s
+      |> String.split("", trim: true)
+      |> Enum.reverse()
+      |> Enum.with_index()
+      |> Enum.reduce([], &get_vals(&1, charmap, &2))
+      |> Enum.sum()
   end
+
+  # last char can't be negative
+  def get_vals({e, 0}, charmap, acc), do: [charmap[e] | acc]
+  # get last element and compare if it is greater than the current element
+  def get_vals({e, i}, charmap, acc = [last | _]), do: [pos_or_neg(charmap[e], last) | acc]
+
+  def pos_or_neg(e_val, last_val) when e_val < last_val, do: -e_val
+  def pos_or_neg(e_val, _), do: e_val
 end

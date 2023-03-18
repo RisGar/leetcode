@@ -1,10 +1,10 @@
-defmodule ListNode do
-  @type t :: %__MODULE__{
-          val: integer,
-          next: ListNode.t() | nil
-        }
-  defstruct val: 0, next: nil
-end
+# defmodule ListNode do
+#   @type t :: %__MODULE__{
+#           val: integer,
+#           next: ListNode.t() | nil
+#         }
+#   defstruct val: 0, next: nil
+# end
 
 defmodule Solution do
   def get_numbers(%ListNode{val: val, next: next}, num_string \\ "") do

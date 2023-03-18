@@ -7,7 +7,6 @@ defmodule Solution do
     0..n |> Enum.reduce([], &possibilities(&1, &2, n))
   end
 
-  # "cases" as guards
   def possibilities(e, acc, _) when e <= 1, do: [1 | acc]
   def possibilities(e, acc, n) when e == n, do: Enum.at(acc, 0) + Enum.at(acc, 1)
   def possibilities(e, acc, n), do: [Enum.at(acc, 0) + Enum.at(acc, 1) | acc]
