@@ -3,9 +3,13 @@ defmodule Solution do
   def two_sum(nums, target) do
     map = nums |> Enum.with_index() |> Enum.into(%{})
 
-    {e, i} = nums |> Enum.with_index() |> Enum.find(fn {e, i} ->
-      Map.has_key?(map, target - e) and map[target - e] != i
-    end)
+    {e, i} =
+      nums
+      |> Enum.with_index()
+      |> Enum.find(fn {e, i} ->
+        Map.has_key?(map, target - e) and map[target - e] != i
+      end)
+
     [i, map[target - e]]
   end
 end

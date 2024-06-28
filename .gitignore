@@ -1,2 +1,6 @@
 .elixir_ls
 .DS_Store
+
+# Added by cargo
+
+**/rust
